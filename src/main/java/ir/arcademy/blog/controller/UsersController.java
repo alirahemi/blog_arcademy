@@ -1,7 +1,7 @@
-package ir.arcademy.blog.modules.users.controller;
+package ir.arcademy.blog.controller;
 
-import ir.arcademy.blog.modules.users.model.Users;
-import ir.arcademy.blog.modules.users.service.UsersService;
+import ir.arcademy.blog.model.Users;
+import ir.arcademy.blog.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

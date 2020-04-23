@@ -1,7 +1,7 @@
-package ir.arcademy.blog.modules.users.service;
+package ir.arcademy.blog.service;
 
-import ir.arcademy.blog.modules.users.model.Users;
-import ir.arcademy.blog.modules.users.repository.UsersRepository;
+import ir.arcademy.blog.model.Users;
+import ir.arcademy.blog.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
