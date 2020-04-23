@@ -3,6 +3,8 @@ package ir.arcademy.blog.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -29,10 +31,12 @@ public class Posts {
     @ManyToMany
     private List<Category> categories;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @Column(name = "updated_id")
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
     public Posts() {

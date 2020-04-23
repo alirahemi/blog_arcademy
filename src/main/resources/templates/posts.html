@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Psts</title>
+    <div th:replace="fragment/layout::head"></div>
+</head>
+<body class="">
+
+<div th:replace="fragment/layout::header"></div>
+
+<div class="container-fluid m-0 p-4">
+
+    <a class="mb-2 btn btn-primary" style="width: 100px">
+        NEW
+    </a>
+
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Email</th>
+            <th scope="col">Name</th>
+            <th scope="col">Operation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>
+                <button class="btn btn-success" style="width: 80px">Edit</button>
+                <button class="btn btn-danger" style="width: 80px">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>
+                <button class="btn btn-success" style="width: 80px">Edit</button>
+                <button class="btn btn-danger" style="width: 80px">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>
+                <button class="btn btn-success" style="width: 80px">Edit</button>
+                <button class="btn btn-danger" style="width: 80px">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+</body></html>
