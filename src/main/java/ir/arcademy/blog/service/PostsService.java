@@ -4,8 +4,14 @@ import ir.arcademy.blog.model.Posts;
 import ir.arcademy.blog.repository.PostsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.util.ResourceUtils;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 @Service
 public class PostsService {
@@ -16,7 +22,14 @@ public class PostsService {
         this.postsRepository = postsRepository;
     }
 
-    public Posts createPost(Posts posts){
+    public Posts registerPost(Posts posts) throws IOException {
+
+        String path = ResourceUtils.getFile("classpath:static/img").getAbsolutePath();
+        byte[] bytes = posts.getFile().getBytes();
+        String name = UUID.randomUUID() + "." + Objects.requireNonNull(posts.getFile().getContentType()).split("/")[1];
+        Files.write(Paths.get(path + File.separator + name), bytes);
+        posts.setCover(name);
+
         return this.postsRepository.save(posts);
     }
 

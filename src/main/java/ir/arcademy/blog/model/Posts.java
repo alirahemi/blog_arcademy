@@ -1,10 +1,12 @@
 package ir.arcademy.blog.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,6 +26,10 @@ public class Posts {
     private String body;
     private String cover;
 
+    @Transient
+    @JsonIgnore
+    private MultipartFile file;
+
     @ManyToOne
     //@JoinColumn(name = "user_fk", referencedColumnName = "id")
     private Users users;
@@ -38,6 +44,8 @@ public class Posts {
     @Column(name = "updated_id")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+
 
     public Posts() {
     }
