@@ -2,9 +2,11 @@ package ir.arcademy.blog.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import ir.arcademy.blog.enums.Roles;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "users_tbl")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class Users {
+public class Users implements Serializable {
 
     @Id
     @GeneratedValue
@@ -24,6 +26,13 @@ public class Users {
     private String password;
     private String name;
     private String cover;
+
+    private boolean enabled = true;
+
+    @ElementCollection(targetClass = Roles.class)
+    @CollectionTable(name = "authorities", joinColumns =
+    @JoinColumn(name = "email", referencedColumnName = "email"))
+    private List<Roles> roles;
 
     @OneToMany(mappedBy = "users")
     private List<Posts> posts;
