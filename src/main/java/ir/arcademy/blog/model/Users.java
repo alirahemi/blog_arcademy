@@ -32,6 +32,7 @@ public class Users implements Serializable {
     @ElementCollection(targetClass = Roles.class)
     @CollectionTable(name = "authorities", joinColumns =
     @JoinColumn(name = "email", referencedColumnName = "email"))
+    @Enumerated(EnumType.STRING)
     private List<Roles> roles;
 
     @OneToMany(mappedBy = "users")
