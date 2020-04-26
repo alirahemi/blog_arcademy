@@ -12,7 +12,11 @@
 
 <div class="container-fluid m-0 p-4">
 
-    <button type="button" class="mb-2 btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+    <a class="mb-2 btn btn-primary" style="width: 100px" th:href="@{/categories/register}">
+        NEW
+    </a>
+
+   <!-- <button type="button" class="mb-2 btn btn-primary" data-toggle="modal" data-target="#exampleModal"
             style="width: 100px">
         NEW
     </button>
@@ -42,7 +46,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
 
     <table class="table">
@@ -54,25 +58,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>varzeshi</td>
-            <td>
-                <button class="btn btn-success" style="width: 80px">Edit</button>
-                <button class="btn btn-danger" style="width: 80px">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>farhangi</td>
-            <td>
-                <button class="btn btn-success" style="width: 80px">Edit</button>
-                <button class="btn btn-danger" style="width: 80px">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>siasi</td>
+        <tr th:each="category: ${categories}">
+            <th scope="row" th:text="${category.getId()}"></th>
+            <td th:text="${category.getTitle()}"></td>
             <td>
                 <button class="btn btn-success" style="width: 80px">Edit</button>
                 <button class="btn btn-danger" style="width: 80px">Delete</button>
