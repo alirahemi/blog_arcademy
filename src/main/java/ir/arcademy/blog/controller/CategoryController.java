@@ -44,17 +44,11 @@ public class CategoryController {
         return "redirect:/categories";
     }
 
-    /*@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editPage(Model model ,@PathVariable("id") Long id) {
-        model.addAttribute("category", categoryService.findById(id));
-        return "categories/registerCategories";
-    }
-
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String editPage(@PathVariable("id") Long id) {
+    public String deletePage(@PathVariable("id") Long id) {
         categoryService.deleteById(id);
         return "redirect:/categories";
-    }*/
+    }
 
     @RequestMapping(value = "/rest/getCategories", method = RequestMethod.GET)
     public @ResponseBody
@@ -67,6 +61,4 @@ public class CategoryController {
     Category registerCategory(@RequestBody Category category) {
         return categoryService.createCategory(category);
     }
-
-
 }
