@@ -1,9 +1,11 @@
 package ir.arcademy.blog.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import ir.arcademy.blog.enums.Roles;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -34,6 +36,10 @@ public class Users implements Serializable {
     @JoinColumn(name = "email", referencedColumnName = "email"))
     @Enumerated(EnumType.STRING)
     private List<Roles> roles;
+
+    @Transient
+    @JsonIgnore
+    private MultipartFile file;
 
     @OneToMany(mappedBy = "users")
     private List<Posts> posts;
