@@ -32,6 +32,12 @@ public class CategoryController {
         return "categories/registerCategories";
     }
 
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editPage(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("category", categoryService.findById(id));
+        return "categories/registerCategories";
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@ModelAttribute Category category) {
         categoryService.createCategory(category);

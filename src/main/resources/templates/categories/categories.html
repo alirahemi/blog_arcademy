@@ -62,8 +62,8 @@
             <th scope="row" th:text="${category.getId()}"></th>
             <td th:text="${category.getTitle()}"></td>
             <td>
-                <button class="btn btn-success" style="width: 80px">Edit</button>
-                <button class="btn btn-danger" style="width: 80px">Delete</button>
+                <a class="btn btn-success" style="width: 80px" th:href="@{/categories/edit/{id}(id=${category.getId()})}">Edit</a>
+                <a class="btn btn-danger" style="width: 80px">Delete</a>
             </td>
         </tr>
         </tbody>
