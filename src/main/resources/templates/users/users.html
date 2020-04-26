@@ -86,7 +86,7 @@
             <td th:text="${user.getName()}"></td>
             <td>
                 <a class="btn btn-success" style="width: 80px" th:href="@{/users/edit/{id}(id=${user.getId()})}">Edit</a>
-                <a class="btn btn-danger" style="width: 80px">Delete</a>
+                <a class="btn btn-danger" style="width: 80px" th:href="@{/users/delete/{id}(id=${user.getId()})}">Delete</a>
             </td>
         </tr>
         </tbody>

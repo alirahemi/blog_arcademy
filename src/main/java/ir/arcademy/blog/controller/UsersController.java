@@ -40,6 +40,12 @@ public class UsersController {
         return "users/registerUser";
     }
 
+    @RequestMapping(value = "/delete/{id}" , method = RequestMethod.GET)
+    public String delete(@PathVariable("id") Long id) {
+        usersService.deleteById(id);
+        return "redirect:/users";
+    }
+
     @RequestMapping(value = "/register" , method = RequestMethod.POST)
     public String register(@ModelAttribute Users user) throws IOException, InvocationTargetException, IllegalAccessException {
         usersService.registerUser(user);
