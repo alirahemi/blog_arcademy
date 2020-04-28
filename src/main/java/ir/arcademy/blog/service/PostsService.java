@@ -1,6 +1,7 @@
 package ir.arcademy.blog.service;
 
 import ir.arcademy.blog.model.Posts;
+import ir.arcademy.blog.model.Users;
 import ir.arcademy.blog.repository.PostsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,4 +38,11 @@ public class PostsService {
         return this.postsRepository.findAll();
     }
 
+    public void deleteById(Long id) {
+        postsRepository.deleteById(id);
+    }
+
+    public Posts findById(Long id) {
+        return postsRepository.getOne(id);
+    }
 }

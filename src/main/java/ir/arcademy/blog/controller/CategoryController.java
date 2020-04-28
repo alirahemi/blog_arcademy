@@ -5,8 +5,10 @@ import ir.arcademy.blog.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -32,16 +34,18 @@ public class CategoryController {
         return "categories/registerCategories";
     }
 
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(@ModelAttribute @Valid Category category, BindingResult bindingResult ) {
+        if(bindingResult.hasErrors())
+            return "categories/registerCategories";
+        categoryService.createCategory(category);
+        return "redirect:/categories";
+    }
+
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editPage(Model model, @PathVariable("id") Long id) {
         model.addAttribute("category", categoryService.findById(id));
         return "categories/registerCategories";
-    }
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@ModelAttribute Category category) {
-        categoryService.createCategory(category);
-        return "redirect:/categories";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

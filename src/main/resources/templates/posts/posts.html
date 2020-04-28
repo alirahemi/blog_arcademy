@@ -12,9 +12,9 @@
 
 <div class="container-fluid m-0 p-4">
 
-    <button type="button" class="mb-2 btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="width: 100px">
+    <a type="button" class="mb-2 btn btn-primary" th:href="@{/posts/register}" style="width: 100px">
         NEW
-    </button>
+    </a>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
         <div class="modal-dialog" role="document">
@@ -70,42 +70,67 @@
         </div>
     </div>
 
-
     <table class="table">
         <thead class="thead-light">
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Email</th>
-            <th scope="col">Name</th>
+            <th scope="col">Title</th>
+            <th scope="col">Categories</th>
+            <th scope="col">CreatedBy</th>
+            <th scope="col">Created Date</th>
+            <th scope="col">Updated Date</th>
             <th scope="col">Operation</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
+        <tr th:each="post: ${posts}">
+            <td scope="row" th:text="${post.id}"></td>
+            <td th:text="${post.title}"></td>
             <td>
-                <button class="btn btn-success" style="width: 80px">Edit</button>
-                <button class="btn btn-danger" style="width: 80px">Delete</button>
+                <ul>
+                    <li th:each="category: ${post.categories}" th:text="${category.title}"></li>
+                </ul>
             </td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
+
+            <td th:text="${post.users != null} ? ${post.users.name} : '---'"></td>
+
+            <td th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+            <td th:text="${#temporals.format(post.updatedAt, 'yyyy-MM-dd HH:mm')}"></td>
+
             <td>
-                <button class="btn btn-success" style="width: 80px">Edit</button>
-                <button class="btn btn-danger" style="width: 80px">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>
-                <button class="btn btn-success" style="width: 80px">Edit</button>
-                <button class="btn btn-danger" style="width: 80px">Delete</button>
+                <a class="btn btn-success"
+                   style="width: 80px" th:href="@{/posts/edit/{id}(id=${post.getId()})}">Edit</a>
+
+                <a class="btn btn-danger"
+                   data-toggle="modal"
+                   href="#"
+                   style="width: 80px" th:data-target="'#delete'+${post.getId()}">
+                    Delete
+                </a>
+
+                <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" role="dialog"
+                     tabindex="-1" th:id="'delete'+${post.getId()}">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+                                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <span th:text="'Are You Sure to Delete '"></span>
+                                <strong th:text="${post.getTitle()}"></strong>
+                                <span th:text="' ?'"></span>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                                <a class="btn btn-danger" th:href="@{/posts/delete/{id}(id=${post.getId()})}">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </td>
         </tr>
         </tbody>
