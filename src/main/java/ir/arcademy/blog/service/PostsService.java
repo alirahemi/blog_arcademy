@@ -5,6 +5,8 @@ import ir.arcademy.blog.model.Posts;
 import ir.arcademy.blog.model.Users;
 import ir.arcademy.blog.repository.PostsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
@@ -49,6 +51,10 @@ public class PostsService {
 
     public List<Posts> findAllPosts() {
         return this.postsRepository.findAll();
+    }
+
+    public Page<Posts> findAllPosts(Pageable pageable) {
+        return this.postsRepository.findAll(pageable);
     }
 
 

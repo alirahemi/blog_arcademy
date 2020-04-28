@@ -33,7 +33,7 @@ public class Users implements Serializable {
     private String email;
 
     @JsonIgnore
-    @NotBlank
+    //@NotBlank
     private String password;
 
     @NotBlank

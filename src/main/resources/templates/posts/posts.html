@@ -16,6 +16,23 @@
         NEW
     </a>
 
+    <nav aria-label="Page navigation example" style="float: right">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${posts.first} ? disabled">
+                <a class="page-link"
+                   th:href="@{/posts(page=${posts.number - 1})}">Previous</a></li>
+
+            <li class="page-item"
+                th:classappend="${posts.number == i} ? active"
+                th:each="i : ${#numbers.sequence(0, posts.totalPages - 1)}">
+                <a class="page-link" th:href="@{/posts(page=${i})}">[[${i + 1}]]</a></li>
+
+
+            <li class="page-item" th:classappend="${posts.last} ? disabled">
+                <a class="page-link" th:href="@{/posts(page=${posts.number + 1})}">Next</a></li>
+        </ul>
+    </nav>
+
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
