@@ -98,8 +98,7 @@
             <td th:text="${#temporals.format(post.updatedAt, 'yyyy-MM-dd HH:mm')}"></td>
 
             <td>
-                <a class="btn btn-success"
-                   style="width: 80px" th:href="@{/posts/edit/{id}(id=${post.getId()})}">Edit</a>
+                <a class="btn btn-success" style="width: 80px" th:href="@{/posts/edit/{id}(id=${post.id})}">Edit</a>
 
                 <a class="btn btn-danger"
                    data-toggle="modal"

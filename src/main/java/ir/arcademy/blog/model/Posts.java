@@ -49,11 +49,9 @@ public class Posts {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_id")
+    @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
-
 
     public Posts() {
     }
@@ -68,6 +66,5 @@ public class Posts {
         this.body = body;
         this.cover = cover;
     }
-
 
 }

@@ -48,7 +48,7 @@ public class PostsController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@ModelAttribute(name = "posts") @Valid Posts posts,
-                           BindingResult bindingResult,Model model, Principal principal) throws IllegalAccessException, IOException, InvocationTargetException {
+                           BindingResult bindingResult,Model model, Principal principal) throws IOException, InvocationTargetException, IllegalAccessException {
         if (bindingResult.hasErrors()) {
             model.addAttribute("categories", categoryService.findAllCategories());
             return "posts/registerPosts";
@@ -61,7 +61,7 @@ public class PostsController {
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editPage(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("post", postsService.findById(id));
+        model.addAttribute("posts", postsService.findById(id));
         model.addAttribute("categories", categoryService.findAllCategories());
         return "posts/registerPosts";
     }
