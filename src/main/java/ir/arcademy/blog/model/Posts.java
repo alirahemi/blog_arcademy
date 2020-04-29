@@ -38,6 +38,7 @@ public class Posts {
 
     @ManyToOne
     //@JoinColumn(name = "user_fk", referencedColumnName = "id")
+    @JsonIgnore
     private Users users;
 
     @ManyToMany
